@@ -7,7 +7,6 @@ function gameFactory(){
 
     let wizzardElement = createWizzard(wizzard.x, wizzard.y);
 
-
     playScreen.appendChild(wizzardElement);
 
     // Object.defineProperties(factory, {

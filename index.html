@@ -48,24 +48,24 @@
                 .forEach(x=> {
                     let currentPozition = parseInt(x.style.left);
 
+                    //Check for collision
+                    if(checkForCollision(wizzardElement, x)){
+                        state.gameOver = true;
+                    }
+
                     //Remove bug when it is on the left 
                     if (currentPozition > 0 - state.bugStats.width) {
                         x.style.left = currentPozition - state.bugStats.speed + 'px';
                     }else{
                         x.remove();
                     }
-
-                    
-
-
                 })
 
             //Bugs spawn
             if (state.bugStats.nextBugTimeCreation < timestamp) {
                 game.createBug();
-                state.bugStats.nextBugTimeCreation = timestamp + Math.random() * state.bugStats.maxCreationInterval;
-                
-            }
+                state.bugStats.nextBugTimeCreation = timestamp + Math.random() * state.bugStats.maxCreationInterval;                
+            };
 
             //Render
             wizzardElement.style.top = wizzard.y + 'px';
@@ -98,6 +98,15 @@
                 //Right - D, check for wizzard is not on right most
             if(state.keys.KeyD && wizzard.x + wizzard.width < game.playScreen.offsetWidth) { wizzard.x += wizzard.speed;}
         }
+
+        function checkForCollision(firstElement, secondElement) { 
+            let first = firstElement.getBoundingClientRect();
+            let second = secondElement.getBoundingClientRect();
+
+            //collision check ...
+            return !(first.top > second.bottom || first.bottom < second.top || first.right < second.left || first.left > second.right)       
+        };
+
     </script>
 </body>
 </html>
