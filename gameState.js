@@ -1,6 +1,7 @@
 function initGameState(){
     let state = {
         gameOver: false,
+        score: 0,
         wizzard: {
             x: 100,
             y: 200,

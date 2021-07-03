@@ -4,6 +4,7 @@ function gameFactory(){
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
+    let scoreScreen = document.querySelector('.score-screen');
 
     let wizzardElement = createWizzard(wizzard.x, wizzard.y);
 
@@ -18,6 +19,7 @@ function gameFactory(){
     let factory = {
         startScreen,
         playScreen,
+        scoreScreen,
         wizzardElement,
         createBug:  () => {
             let bugElement = document.createElement('div');

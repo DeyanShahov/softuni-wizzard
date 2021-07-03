@@ -10,6 +10,7 @@
 <body>
     <div class="game-view">
         <div class="start-screen">Start Game</div>
+        <div class="score-screen">0 pts.</div>
         <div class="play-screen hidden">ggggg</div>
     </div>
 
@@ -37,8 +38,8 @@
         };
 
         function gameLoop(timestamp){
-            let {wizzard} = state;
-            let {wizzardElement} = game;
+            let { wizzard } = state;
+            let { wizzardElement, scoreScreen } = game;
 
             //Change pozition ot Wizzard
             modifyWizzardPosition(state, game);  
@@ -70,12 +71,14 @@
             //Render
             wizzardElement.style.top = wizzard.y + 'px';
             wizzardElement.style.left = wizzard.x + 'px';
+            scoreScreen.textContent = state.score + " " + 'pts.';
 
 
             if (!state.gameOver) {
+                state.score++;
                 window.requestAnimationFrame(gameLoop);
             }else{
-                alert('GAME OVER');
+                alert('GAME OVER' + " " + state.score);
             };
         };
 
