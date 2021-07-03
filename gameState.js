@@ -9,8 +9,11 @@ function initGameState(){
             speed: 5,
         },
         keys:{},
-        config: {
-
+        bugStats: {
+            width: 50,
+            height: 50,
+            nextBugTimeCreation: 0,
+            maxCreationInterval: 1500,
         }
     };
 

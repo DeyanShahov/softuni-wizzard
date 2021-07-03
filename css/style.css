@@ -33,6 +33,13 @@ body{
 .wizzard{
     position: absolute;
     background-image: url('/images/wizard.png');
+    background-size: cover;
     width: 82px;
     height: 100px;
+}
+
+.bug{
+    position: absolute;
+    background-image: url('/images/bug.png');
+    background-size: cover;
 }

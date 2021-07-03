@@ -36,12 +36,19 @@
             window.requestAnimationFrame(gameLoop); // ???? 
         };
 
-        function gameLoop(){
+        function gameLoop(timestamp){
             let {wizzard} = state;
             let {wizzardElement} = game;
 
             //Change pozition ot Wizzard
             modifyWizzardPosition(state, game);  
+
+            //Bugs spawn
+            if (state.bugStats.nextBugTimeCreation < timestamp) {
+                game.createBug();
+                state.bugStats.nextBugTimeCreation = timestamp + Math.random() * state.bugStats.maxCreationInterval;
+                
+            }
 
             //Render
             wizzardElement.style.top = wizzard.y + 'px';
