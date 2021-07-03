@@ -12,6 +12,7 @@ function initGameState(){
         bugStats: {
             width: 50,
             height: 50,
+            speed: 3,
             nextBugTimeCreation: 0,
             maxCreationInterval: 1500,
         }

@@ -43,6 +43,13 @@
             //Change pozition ot Wizzard
             modifyWizzardPosition(state, game);  
 
+            //Move bugs
+            [...document.getElementsByClassName('bug')]
+                .forEach(x=> {
+                    let currentPozition = parseInt(x.style.left);
+                    x.style.left = currentPozition - state.bugStats.speed + 'px';
+                })
+
             //Bugs spawn
             if (state.bugStats.nextBugTimeCreation < timestamp) {
                 game.createBug();
