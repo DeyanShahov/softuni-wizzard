@@ -22,7 +22,12 @@
         //current game dom elements
         let game = gameFactory();
 
+        //On click event start the game ...
         game.startScreen.addEventListener('click', gameStart);
+
+        //Add key event for detect input keys ...
+        document.addEventListener('keydown', onKeyDown);
+        document.addEventListener('keyup', onKeyUp);
 
         function gameStart() { 
             game.startScreen.classList.add('hidden');
@@ -32,12 +37,31 @@
         };
 
         function gameLoop(){
-            console.log('loop');
+            let {wizzard} = state;
+            let {wizzardElement} = game;
+
+            //Change pozition ot Wizzard
+            if (state.keys.KeyW) {
+                wizzard.y -= wizzard.speed;
+            };
+
+            //Render
+            wizzardElement.style.top = wizzard.y + 'px';
+
+
             if (!state.gameOver) {
                 window.requestAnimationFrame(gameLoop);
             }else{
                 alert('GAME OVER');
-            }
+            };
+        };
+
+        function onKeyDown(e){
+            state.keys[e.code] = true;
+        }
+
+        function onKeyUp(e){
+            state.keys[e.code] = false;
         }
 
     </script>

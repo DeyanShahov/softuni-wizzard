@@ -3,7 +3,12 @@ function initGameState(){
         gameOver: false,
         wizzard: {
             x: 100,
-            y: 200
+            y: 200,
+            speed: 5,
+        },
+        keys:{},
+        config: {
+
         }
     };
 
