@@ -11,7 +11,7 @@
     <div class="game-view">
         <div class="start-screen">Start Game</div>
         <div class="score-screen">0 pts.</div>
-        <div class="play-screen hidden">ggggg</div>
+        <div class="play-screen hidden"></div>
     </div>
 
     <script src="gameState.js"></script>
@@ -44,21 +44,46 @@
             //Change pozition ot Wizzard
             modifyWizzardPosition(state, game);  
 
+            //Fire FIREBALL
+            if (state.keys.Space) {
+                //Change frame of wizzard - fire
+                wizzardElement.style.backgroundImage = "url('/images/wizard-fire.png')"
+                //Spawn fireball
+                game.createFireball();
+            }else{
+                //Change frame of wizzard - normal
+                wizzardElement.style.backgroundImage = "url('/images/wizard.png')"
+            }
+
+            //Move fireball
+            [...document.getElementsByClassName('fireball')]
+                .forEach(fireball => {
+                    let currentPozition = parseInt(fireball.style.left);
+
+                     //Remove fireball when it is on the right 
+                     if (currentPozition + state.fireballStats.width < game.playScreen.offsetWidth) {
+                        fireball.style.left = currentPozition + state.fireballStats.speed + 'px';
+                    }else{
+                        fireball.remove();
+                    }
+                    
+                });
+
             //Move bugs
             [...document.getElementsByClassName('bug')]
-                .forEach(x=> {
-                    let currentPozition = parseInt(x.style.left);
+                .forEach(bug=> {
+                    let currentPozition = parseInt(bug.style.left);
 
                     //Check for collision
-                    if(checkForCollision(wizzardElement, x)){
+                    if(checkForCollision(wizzardElement, bug)){
                         state.gameOver = true;
                     }
 
                     //Remove bug when it is on the left 
                     if (currentPozition > 0 - state.bugStats.width) {
-                        x.style.left = currentPozition - state.bugStats.speed + 'px';
+                        bug.style.left = currentPozition - state.bugStats.speed + 'px';
                     }else{
-                        x.remove();
+                        bug.remove();
                     }
                 })
 

@@ -1,6 +1,6 @@
 function gameFactory(){
     //let factory = {};
-    let { wizzard, bugStats } = initGameState()();
+    let { wizzard, bugStats, fireballStats } = initGameState()();
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
@@ -32,6 +32,19 @@ function gameFactory(){
             bugElement.style.top = ( playScreen.offsetHeight - bugStats.height ) * Math.random() + 'px';
 
             playScreen.appendChild(bugElement);
+        },
+        createFireball: () => {
+            let fireballElement = document.createElement('div');
+
+            fireballElement.classList.add('fireball');
+            fireballElement.style.width = fireballStats.width + 'px';
+            fireballElement.style.height = fireballStats.height + 'px';
+
+            let target = document.querySelector('.wizzard').getBoundingClientRect();
+            fireballElement.style.left = target.x + 'px';
+            fireballElement.style.top = target.y + 'px';
+
+            playScreen.appendChild(fireballElement);
         },
     };
 
