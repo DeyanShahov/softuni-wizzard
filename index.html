@@ -47,7 +47,17 @@
             [...document.getElementsByClassName('bug')]
                 .forEach(x=> {
                     let currentPozition = parseInt(x.style.left);
-                    x.style.left = currentPozition - state.bugStats.speed + 'px';
+
+                    //Remove bug when it is on the left 
+                    if (currentPozition > 0 - state.bugStats.width) {
+                        x.style.left = currentPozition - state.bugStats.speed + 'px';
+                    }else{
+                        x.remove();
+                    }
+
+                    
+
+
                 })
 
             //Bugs spawn
