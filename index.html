@@ -41,14 +41,7 @@
             let {wizzardElement} = game;
 
             //Change pozition ot Wizzard
-                //Up - W
-            if (state.keys.KeyW) { wizzard.y -= wizzard.speed;}
-                //Down - S
-            if(state.keys.KeyS) { wizzard.y += wizzard.speed;}
-                //Left - A
-            if(state.keys.KeyA) { wizzard.x -= wizzard.speed;}
-                //Right - D
-            if(state.keys.KeyD) { wizzard.x += wizzard.speed;}
+            modifyWizzardPosition(state, game);  
 
             //Render
             wizzardElement.style.top = wizzard.y + 'px';
@@ -70,6 +63,17 @@
             state.keys[e.code] = false;
         }
 
+        function modifyWizzardPosition(state, game){
+            let wizzard = state.wizzard;
+                //Up - W , check for wizzard is not on top most
+            if (state.keys.KeyW && wizzard.y > 0) { wizzard.y -= wizzard.speed;}
+                //Down - S, check for wizzard is not on botom
+            if(state.keys.KeyS && wizzard.y + wizzard.height < game.playScreen.offsetHeight) { wizzard.y += wizzard.speed;}
+                //Left - A, check for wizzard is not on left most
+            if(state.keys.KeyA && wizzard.x > 0) { wizzard.x -= wizzard.speed;}
+                //Right - D, check for wizzard is not on right most
+            if(state.keys.KeyD && wizzard.x + wizzard.width < game.playScreen.offsetWidth) { wizzard.x += wizzard.speed;}
+        }
     </script>
 </body>
 </html>
