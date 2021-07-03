@@ -41,12 +41,18 @@
             let {wizzardElement} = game;
 
             //Change pozition ot Wizzard
-            if (state.keys.KeyW) {
-                wizzard.y -= wizzard.speed;
-            };
+                //Up - W
+            if (state.keys.KeyW) { wizzard.y -= wizzard.speed;}
+                //Down - S
+            if(state.keys.KeyS) { wizzard.y += wizzard.speed;}
+                //Left - A
+            if(state.keys.KeyA) { wizzard.x -= wizzard.speed;}
+                //Right - D
+            if(state.keys.KeyD) { wizzard.x += wizzard.speed;}
 
             //Render
             wizzardElement.style.top = wizzard.y + 'px';
+            wizzardElement.style.left = wizzard.x + 'px';
 
 
             if (!state.gameOver) {
