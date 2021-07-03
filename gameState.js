@@ -17,11 +17,14 @@ function initGameState(){
             speed: 3,
             nextBugTimeCreation: 0,
             maxCreationInterval: 1500,
+            score: 5000,
         },
         fireballStats: {
             width: 40,
             height: 40,
             speed: 10,
+            nextFireballCreation: 0,
+            castSpeed: 1000,
         }
     };
 

@@ -49,7 +49,10 @@
                 //Change frame of wizzard - fire
                 wizzardElement.style.backgroundImage = "url('/images/wizard-fire.png')"
                 //Spawn fireball
-                game.createFireball();
+                if (state.fireballStats.nextFireballCreation < timestamp) {
+                    game.createFireball();
+                    state.fireballStats.nextFireballCreation = timestamp + state.fireballStats.castSpeed;
+                }
             }else{
                 //Change frame of wizzard - normal
                 wizzardElement.style.backgroundImage = "url('/images/wizard.png')"
@@ -60,13 +63,22 @@
                 .forEach(fireball => {
                     let currentPozition = parseInt(fireball.style.left);
 
-                     //Remove fireball when it is on the right 
-                     if (currentPozition + state.fireballStats.width < game.playScreen.offsetWidth) {
+                    //Remove fireball when it is on the right 
+                    if (currentPozition + state.fireballStats.width < game.playScreen.offsetWidth) {
                         fireball.style.left = currentPozition + state.fireballStats.speed + 'px';
                     }else{
                         fireball.remove();
-                    }
-                    
+                    };
+
+                    //Check for collision for each fireball and bug
+                    [...document.getElementsByClassName('bug')]
+                        .forEach(bug=> {
+                             if(checkForCollision(fireball, bug)){
+                                state.score += state.bugStats.score;
+                                fireball.remove();
+                                bug.remove();
+                            }
+                         });
                 });
 
             //Move bugs
@@ -111,6 +123,7 @@
         };
 
         function onKeyDown(e){
+            e.preventDefault();
             state.keys[e.code] = true;
         }
 
