@@ -1,18 +1,25 @@
 function gameFactory(){
-    let factory = {};
+    //let factory = {};
+    let { wizzard } = initGameState()();
 
     let startScreen = document.querySelector('.start-screen');
     let playScreen = document.querySelector('.play-screen');
 
-    let wizzardElement = createWizzard(100, 200);
+    let wizzardElement = createWizzard(wizzard.x, wizzard.y);
 
     playScreen.appendChild(wizzardElement);
 
-    Object.defineProperties(factory, {
-        startScreen: { get: () => startScreen},
-        playScreen: { get: () => playScreen},
-        wizzardElement,//: { get: () => wizzardElement},
-    });
+    // Object.defineProperties(factory, {
+    //     startScreen: { get: () => startScreen},
+    //     playScreen: { get: () => playScreen},
+    //     wizzardElement,//: { get: () => wizzardElement},
+    // });
+
+    let factory = {
+        startScreen,
+        playScreen,
+        wizzardElement
+    };
 
     return factory;
 
