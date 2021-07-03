@@ -7,6 +7,7 @@ function initGameState(){
             width: 82,
             height: 100,
             speed: 5,
+            gravity: 2,
         },
         keys:{},
         bugStats: {

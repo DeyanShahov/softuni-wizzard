@@ -89,6 +89,9 @@
 
         function modifyWizzardPosition(state, game){
             let wizzard = state.wizzard;
+                //Add GRAVITI
+            let isLowerBound = wizzard.y + wizzard.height >= game.playScreen.offsetHeight;
+            if (!isLowerBound) { wizzard.y += wizzard.gravity }
                 //Up - W , check for wizzard is not on top most
             if (state.keys.KeyW && wizzard.y > 0) { wizzard.y -= wizzard.speed;}
                 //Down - S, check for wizzard is not on botom
