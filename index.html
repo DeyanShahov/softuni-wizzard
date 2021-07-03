@@ -27,7 +27,18 @@
         function gameStart() { 
             game.startScreen.classList.add('hidden');
             game.playScreen.classList.remove('hidden');
+
+            window.requestAnimationFrame(gameLoop); // ???? 
         };
+
+        function gameLoop(){
+            console.log('loop');
+            if (!state.gameOver) {
+                window.requestAnimationFrame(gameLoop);
+            }else{
+                alert('GAME OVER');
+            }
+        }
 
     </script>
 </body>
